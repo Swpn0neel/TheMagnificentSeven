@@ -1,5 +1,5 @@
 name:  Bug Report
-description: Report a bug encountered in Roadmap's repo
+description: Report a bug encountered in TheMagnificentSeven's repo
 title: '[Bug] <description>'
 labels: ['triage/awaiting','bug','triage/accepted']
 body:
