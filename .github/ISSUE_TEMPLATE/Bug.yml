@@ -1,6 +1,6 @@
 name:  Bug Report
 description: Report a bug encountered in TheMagnificentSeven's repo
-title: '[Bug] <description>'
+title: 'bug: <description>'
 labels: ['triage/awaiting','bug','triage/accepted']
 body:
   - type: textarea
