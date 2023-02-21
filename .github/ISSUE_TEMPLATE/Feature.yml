@@ -1,6 +1,6 @@
 name: Feature Request
 description: Suggest a feature to TheMagnificentSeven Repo
-title: '[FEATURE] <description>'
+title: 'feat: <description>'
 labels: ['triage/awaiting', 'enhancement', 'feat']
 body:
   - type: textarea
