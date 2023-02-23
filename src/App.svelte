@@ -20,12 +20,11 @@
       });
     gsap.to(header, {
       delay: 1.6,
-      ease: "power1.in",
-      duration: 2,
+      duration: 1,
       width: 0,
       padding: 0,
     });
-    gsap.to(main, { delay: 1.6, duration: 2, width: "100%" });
+    gsap.to(main, { delay: 1.6, duration: 1, width: "100%" });
   };
 </script>
 
@@ -39,7 +38,7 @@
     <button bind:this={header_btn} on:click={toggleFullscreen}>Explore</button>
   </header>
   <div class="con-canvas">
-    <EarthCanvas />
+    <EarthCanvas/>
   </div>
 </main>
 

@@ -9,11 +9,7 @@
     T,
   } from "@threlte/core";
   import { spring } from "svelte/motion";
-  import {
-    MeshStandardMaterial,
-    SphereGeometry,
-    TextureLoader,
-  } from "three";
+  import { MeshStandardMaterial, SphereGeometry, TextureLoader } from "three";
 
   /* Object Properties */
   const SCALE = 1;
@@ -38,11 +34,12 @@
   /* Textures */
   const textureLoader = new TextureLoader();
   // src\textures\earth3.jpg
-  const earthColorMap = textureLoader.load("src/textures/earth3.jpg");
-  const earthNormalMap = textureLoader.load("src/textures/earth_normal.jpg");
-  const earthSpecMap = textureLoader.load("src/textures/image.jpg");
+  const earthColorMap = textureLoader.load("src/textures/earth_base_color.jpg");
+  const earthSpecMap = textureLoader.load("src/textures/earth_spec.jpg");
   const earthBumpMap = textureLoader.load("src/textures/earth_bump.jpg");
-  const cloudsColorMap = textureLoader.load("src/textures/cloud_02.jpg");
+  const cloudsColorMap = textureLoader.load(
+    "src/textures/cloud_base_color.jpg"
+  );
 
   let perspectiveCamera;
   let directionalLight;
@@ -65,7 +62,7 @@
   dynamicLighting(HAS_DYNAMIC_LIGHTING);
 </script>
 
-<Canvas >
+<Canvas>
   <PerspectiveCamera
     position={CAMERA_POSITION}
     fov={FIELD_OF_VIEW}
@@ -82,11 +79,7 @@
   </PerspectiveCamera>
 
   <T.AmbientLight intensity={AMBIENT_LIGHT_INTENSITY} />
-  <!-- <SpotLight
-    color={0xffeeb1}
-    intensity={SPOTLIGHT_INTENSITY}
-    position={{ x: 10, y: 10, z: 0 }}
-  /> -->
+
   <DirectionalLight
     bind:light={directionalLight}
     intensity={DIRECTIONAL_INTENSITY}
@@ -105,13 +98,9 @@
         fog: true,
         aoMap: earthSpecMap,
         map: earthColorMap,
-        // normalMap: earthNormalMap,
         aoMapIntensity: 0.25,
         roughnessMap: earthSpecMap,
-        // bumpMap: earthBumpMap,
         bumpScale: 0.1,
-        // displacementMap: earthBumpMap,
-        displacementScale: 0.2
       })}
     />
     <Mesh
