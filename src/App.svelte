@@ -30,9 +30,9 @@
 </script>
 
 <main bind:this={main}>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&display=swap" rel="stylesheet">
   <header bind:this={header} class="con-header">
     <h1 bind:this={header_heading}>The Magnificient Seven</h1>
     <p bind:this={header_para}>
@@ -41,7 +41,7 @@
     <button bind:this={header_btn} on:click={toggleFullscreen}><span>Explore</span></button>
   </header>
   <div class="con-canvas">
-    <EarthCanvas/>
+    <EarthCanvas></EarthCanvas>
   </div>
 </main>
 
@@ -52,23 +52,28 @@
 
 <style>
   * {
-    --bgColor: #03041c;
+    /* --bgColor: #03041c; */
+    /* background-repeat: no-repeat;
+    background-image: url(https://wallpapercave.com/wp/wp2088454.jpg); */
   }
   main {
+    background-repeat: no-repeat;
+    background-image: url(https://wallpapercave.com/wp/wp2088454.jpg);
+    /* background-image: url(./images/diyamam.jpg); */
     overflow: hidden;
     display: flex;
   }
   .con-canvas {
     height: 100vh;
     width: 100%;
-    background-color: var(--bgColor);
+    /* background-color: var(--bgColor); */
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   header {
-    background-color: var(--bgColor);
+    /* background-color: var(--bgColor); */
     padding: 0 4rem;
     display: flex;
     align-items: flex-start;
@@ -84,13 +89,15 @@
 
   header > h1 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
+    font-size: 66px;
   }
 
   header > p {
     font-family: 'PT Sans', sans-serif;
     line-height: 1.75rem;
-    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    display: flex;
+    justify-content:flex-end;
   }
 
   header > button {
@@ -116,6 +123,7 @@
   line-height: 0.77em;
   max-width: 100%;
   min-width: 140px;
+  width: 35%;
   padding: 3px;
   text-decoration: none;
   user-select: none;
@@ -148,5 +156,5 @@ header > button:hover span {
     font-size: 24px;
     min-width: 196px;
   }
-  }
+}
 </style>
