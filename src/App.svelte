@@ -30,6 +30,9 @@
 </script>
 
 <main bind:this={main}>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
   <header bind:this={header} class="con-header">
     <h1 bind:this={header_heading}>The Magnificient Seven</h1>
     <p bind:this={header_para}>
@@ -80,12 +83,12 @@
   }
 
   header > h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-weight: 900;
   }
 
   header > p {
-    font-family: sans-serif;
+    font-family: 'PT Sans', sans-serif;
     line-height: 1.75rem;
     font-family: 'Poppins', sans-serif;
   }
@@ -104,7 +107,7 @@
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
-  font-family: Phantomsans, sans-serif;
+  font-family: 'Gruppo', cursive;
   font-weight: bold;
   /* font-size: 20px; */
   font-size: 25px;
