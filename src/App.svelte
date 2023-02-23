@@ -71,7 +71,7 @@
   }
 
   header > * {
-    margin: 0.5rem 0;
+    margin: 0.64rem 0;
     color: white;
   }
 
@@ -82,7 +82,8 @@
 
   header > p {
     font-family: sans-serif;
-    line-height: 1.5rem;
+    line-height: 1.75rem;
+    font-family: 'Poppins', sans-serif;
   }
 
   header > button {
@@ -100,6 +101,7 @@
   color: #FFFFFF;
   display: flex;
   font-family: Phantomsans, sans-serif;
+  font-weight: bold;
   font-size: 20px;
   justify-content: center;
   line-height: 1em;
