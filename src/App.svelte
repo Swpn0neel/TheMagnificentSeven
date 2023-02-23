@@ -1,6 +1,7 @@
 <script>
   import gsap from "gsap";
   import EarthCanvas from "./lib/ThreeScenes/EarthCanvas.svelte";
+  import FrontPage from "./FrontPage.svelte";
 
   let header, header_heading, header_para, header_btn;
   let main;
@@ -32,7 +33,7 @@
   <header bind:this={header} class="con-header">
     <h1 bind:this={header_heading}>The Magnificient Seven</h1>
     <p bind:this={header_para}>
-      A Deep-Dive into the World's magnificent structures built by the humans.
+      A Deep-Dive into the World's magnificent structures, that are the engineering marvels ever created by us. These iconic structures have been recognized for their awe-inspiring design, scale, and technological sophistication and serves as a testament to human ingenuity and the unrelenting pursuit of progress.
     </p>
     <button bind:this={header_btn} on:click={toggleFullscreen}><span>Explore</span></button>
   </header>
@@ -41,8 +42,10 @@
   </div>
 </main>
 
-<!-- 
-<FrontPage/> -->
+<!-- <FrontPage>
+
+</FrontPage> -->
+
 
 <style>
   * {
@@ -68,6 +71,7 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    width:50%;
   }
 
   header > * {
@@ -102,9 +106,11 @@
   display: flex;
   font-family: Phantomsans, sans-serif;
   font-weight: bold;
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 25px;
   justify-content: center;
-  line-height: 1em;
+  /* line-height: 1em; */
+  line-height: 0.77em;
   max-width: 100%;
   min-width: 140px;
   padding: 3px;
