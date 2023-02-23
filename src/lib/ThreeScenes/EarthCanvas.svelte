@@ -6,19 +6,22 @@
     Mesh,
     OrbitControls,
     PerspectiveCamera,
-    SpotLight,
     T,
   } from "@threlte/core";
   import { spring } from "svelte/motion";
-  import { MeshStandardMaterial, SphereGeometry, TextureLoader } from "three";
+  import {
+    MeshStandardMaterial,
+    SphereGeometry,
+    TextureLoader,
+  } from "three";
 
   /* Object Properties */
   const SCALE = 1;
   const OBJ_SCALE = spring(SCALE);
   const EARTH_RADIUS = 3;
-  const MIN_CULLING_DIST = 0.01;
-  const EARTH_ROTATION_SPEED = 2;
-  const OBJECT_SEG_COUNT = 128;
+  const MIN_CULLING_DIST = 0.05;
+  const EARTH_ROTATION_SPEED = -1;
+  const OBJECT_SEG_COUNT = 32;
 
   /* Viewport Settings */
   const CAMERA_POSITION = { x: 10, y: 10, z: 10 };
@@ -29,13 +32,17 @@
   /* Lighting Settings */
   const HAS_DYNAMIC_LIGHTING = true;
   const AMBIENT_LIGHT_INTENSITY = 0.025;
-  const SPOTLIGHT_DISTANCE = 10;
-  const SPOTLIGHT_INTENSITY = 1;
+  const DIRECTIONAL_DISTANCE = 10;
+  const DIRECTIONAL_INTENSITY = 1;
 
   /* Textures */
   const textureLoader = new TextureLoader();
+  // src\textures\earth3.jpg
   const earthColorMap = textureLoader.load("src/textures/earth3.jpg");
-  const cloudsColorMap = textureLoader.load("src/textures/earth_clouds.jpg");
+  const earthNormalMap = textureLoader.load("src/textures/earth_normal.jpg");
+  const earthSpecMap = textureLoader.load("src/textures/image.jpg");
+  const earthBumpMap = textureLoader.load("src/textures/earth_bump.jpg");
+  const cloudsColorMap = textureLoader.load("src/textures/cloud_02.jpg");
 
   let perspectiveCamera;
   let directionalLight;
@@ -47,11 +54,10 @@
   function dynamicLighting(hasDynamicLighting) {
     if (!hasDynamicLighting) return;
     const SPOTLIGHT_OFFSET = 10;
-    // console.log(directionalLight?.position);
     directionalLight?.position.set(
-      perspectiveCamera?.position.x+120,
-      perspectiveCamera?.position.y+120,
-      perspectiveCamera?.position.z+120
+      perspectiveCamera?.position.x + SPOTLIGHT_OFFSET,
+      perspectiveCamera?.position.y + SPOTLIGHT_OFFSET,
+      perspectiveCamera?.position.z + SPOTLIGHT_OFFSET
     );
     perspectiveCamera?.updateProjectionMatrix();
     requestAnimationFrame(dynamicLighting);
@@ -59,7 +65,7 @@
   dynamicLighting(HAS_DYNAMIC_LIGHTING);
 </script>
 
-<Canvas>
+<Canvas >
   <PerspectiveCamera
     position={CAMERA_POSITION}
     fov={FIELD_OF_VIEW}
@@ -76,30 +82,41 @@
   </PerspectiveCamera>
 
   <T.AmbientLight intensity={AMBIENT_LIGHT_INTENSITY} />
-  <SpotLight
+  <!-- <SpotLight
     color={0xffeeb1}
     intensity={SPOTLIGHT_INTENSITY}
-    position={{ x: SPOTLIGHT_DISTANCE, y: SPOTLIGHT_DISTANCE }}
-  />
+    position={{ x: 10, y: 10, z: 0 }}
+  /> -->
   <DirectionalLight
     bind:light={directionalLight}
-    position={{ x: 10, y: 10, z: 0 }}
+    intensity={DIRECTIONAL_INTENSITY}
+    position={{ x: 10, y: 10, z: 10 }}
   />
 
   <Group scale={$OBJ_SCALE}>
     <Mesh
       position={{ y: 0.5 }}
-      castShadow
       geometry={new SphereGeometry(
         EARTH_RADIUS,
         OBJECT_SEG_COUNT,
         OBJECT_SEG_COUNT
       )}
-      material={new MeshStandardMaterial({ roughness: 1, map: earthColorMap })}
+      material={new MeshStandardMaterial({
+        fog: true,
+        aoMap: earthSpecMap,
+        map: earthColorMap,
+        // normalMap: earthNormalMap,
+        aoMapIntensity: 0.25,
+        roughnessMap: earthSpecMap,
+        // bumpMap: earthBumpMap,
+        bumpScale: 0.1,
+        // displacementMap: earthBumpMap,
+        displacementScale: 0.2
+      })}
     />
     <Mesh
       position={{ y: 0.5 }}
-      castShadow
+      castShadow={true}
       geometry={new SphereGeometry(
         EARTH_RADIUS + MIN_CULLING_DIST,
         OBJECT_SEG_COUNT,
