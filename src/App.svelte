@@ -1,10 +1,11 @@
 <script>
   import gsap from "gsap";
+  import { ROUTES } from "./data/routes";
   import EarthCanvas from "./lib/ThreeScenes/EarthCanvas.svelte";
-  import FrontPage from "./FrontPage.svelte";
 
   let header, header_heading, header_para, header_btn;
-  let main;
+  let main, nav, orderedList;
+  let listItems = [];
 
   const toggleFullscreen = () => {
     const fullscreen_timeline = gsap.timeline({
@@ -26,22 +27,42 @@
       padding: 0,
     });
     gsap.to(main, { delay: 1.6, duration: 1, width: "100%" });
+
+    gsap.to(nav, { delay: 1.6, duration: 0, display: "flex" });
+    gsap.to(orderedList, { delay: 2.6, duration: 0, display: "flex" });
+    gsap.from(nav, { delay: 1.6, duration: 1, xPercent: "200%" });
+
+    const listTimeline = gsap.timeline({
+      defaults: { xPercent: 200, duration: 0.2, opacity: 0 },
+    });
+    listTimeline.delay(2.6);
+    listTimeline
+      .from(listItems[0], {})
+      .from(listItems[1], {})
+      .from(listItems[2], {})
+      .from(listItems[3], {})
+      .from(listItems[4], {})
+      .from(listItems[5], {})
+      .from(listItems[6], {});
   };
 </script>
 
-<main bind:this={main}>
+<svelte:head>
   <link
     href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap"
     rel="stylesheet"
   />
-  <link
+  <!-- <link
     href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap"
     rel="stylesheet"
   />
   <link
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&display=swap"
     rel="stylesheet"
-  />
+  /> -->
+</svelte:head>
+
+<main bind:this={main}>
   <header bind:this={header} class="con-header">
     <h1 bind:this={header_heading}>The <span>Magnificient</span> Seven</h1>
     <p bind:this={header_para}>
@@ -56,6 +77,18 @@
   <div class="con-canvas">
     <EarthCanvas />
   </div>
+  <nav bind:this={nav}>
+    <ol bind:this={orderedList}>
+      {#each ROUTES as route_data}
+        <!-- <a href="#"
+        >{`${route_data.index}. `}<span>{`${route_data.title}`}</span></a
+      > -->
+        <li bind:this={listItems[route_data.index - 1]}>
+          <a href="#">{route_data.title}</a>
+        </li>
+      {/each}
+    </ol>
+  </nav>
 </main>
 
 <style>
@@ -159,10 +192,54 @@
     background: none;
   }
 
+  nav {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  nav ol {
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+  }
+
+  nav ol li {
+    opacity: 1;
+    display: list-item;
+    list-style-position: inside;
+    color: white;
+    font-size: 1.2rem;
+    font-family: "poppins", sans-serif;
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 0.5rem 0;
+  }
+
+  nav a {
+    color: white;
+    font-size: 1.2rem;
+    font-family: "poppins", sans-serif;
+    text-decoration: none;
+    letter-spacing: 2px;
+    /* font-weight: bold; */
+  }
+
+  nav a:hover {
+    background: -webkit-linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   @media (min-width: 768px) {
     button {
       font-size: 24px;
-      min-width: 196px;
+      min-width: 224px;
     }
   }
 </style>
