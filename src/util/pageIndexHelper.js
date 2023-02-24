@@ -1,4 +1,5 @@
 export function getPageIndex(route) {
+  console.log("r = "+route)
   switch (route) {
     case "great-wall-of-china":
       return 0;

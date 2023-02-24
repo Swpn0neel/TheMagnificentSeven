@@ -1,37 +1,37 @@
 export const ROUTES = [
   {
     title: "The Great Wall of China",
-    route: "great-wall-of-china",
+    route: "/great-wall-of-china",
     index: 1,
   },
   {
     title: "Chichén Itzá",
-    route: "chichen-itza",
+    route: "/chichen-itza",
     index: 2,
   },
   {
     title: "Petra",
-    route: "petra",
+    route: "/petra",
     index: 3,
   },
   {
     title: "Machu Picchu",
-    route: "machu-picchu",
+    route: "/machu-picchu",
     index: 4,
   },
   {
     title: "Chris The Redeemer",
-    route: "christ-the-redeemer",
+    route: "/christ-the-redeemer",
     index: 5,
   },
   {
     title: "Colosseum",
-    route: "colosseum",
+    route: "/colosseum",
     index: 6,
   },
   {
     title: "Taj Mahal",
-    route: "taj-mahal",
+    route: "/taj-mahal",
     index: 7,
   },
 ];

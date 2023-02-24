@@ -34,12 +34,10 @@
   /* Textures */
   const textureLoader = new TextureLoader();
   // src\textures\earth3.jpg
-  const earthColorMap = textureLoader.load("src/textures/earth_base_color.jpg");
-  const earthSpecMap = textureLoader.load("src/textures/earth_spec.jpg");
-  const earthBumpMap = textureLoader.load("src/textures/earth_bump.jpg");
-  const cloudsColorMap = textureLoader.load(
-    "src/textures/cloud_base_color.jpg"
-  );
+  const earthColorMap = textureLoader.load("/earth_base_color.jpg");
+  const earthSpecMap = textureLoader.load("/earth_spec.jpg");
+  const earthBumpMap = textureLoader.load("/earth_bump.jpg");
+  const cloudsColorMap = textureLoader.load("/cloud_base_color.jpg");
 
   let perspectiveCamera;
   let directionalLight;
