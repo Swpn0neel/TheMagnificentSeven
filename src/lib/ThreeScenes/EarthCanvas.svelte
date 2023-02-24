@@ -12,10 +12,10 @@
   import { MeshStandardMaterial, SphereGeometry, TextureLoader } from "three";
 
   /* Object Properties */
-  const SCALE = 1;
-  const OBJ_SCALE = spring(SCALE);
-  const EARTH_RADIUS = 2.8;
-  const MIN_CULLING_DIST = 0.05;
+  let SCALE = 1;
+  let OBJ_SCALE = spring(SCALE);
+  const EARTH_RADIUS = 3;
+  const MIN_CULLING_DIST = 0.01;
   const EARTH_ROTATION_SPEED = -1;
   const OBJECT_SEG_COUNT = 32;
 
@@ -60,6 +60,13 @@
     requestAnimationFrame(dynamicLighting);
   }
   dynamicLighting(HAS_DYNAMIC_LIGHTING);
+
+  function zoomIn() {
+    $OBJ_SCALE = 1.05;
+  }
+  function zoomOut() {
+    $OBJ_SCALE = 1;
+  }
 </script>
 
 <Canvas>
@@ -104,6 +111,9 @@
       })}
     />
     <Mesh
+      interactive
+      on:pointerenter={zoomIn}
+      on:pointerleave={zoomOut}
       position={{ y: 0.5 }}
       castShadow={true}
       geometry={new SphereGeometry(
