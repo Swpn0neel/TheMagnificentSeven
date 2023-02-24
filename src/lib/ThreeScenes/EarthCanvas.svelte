@@ -8,6 +8,7 @@
     PerspectiveCamera,
     T,
   } from "@threlte/core";
+  import { onMount } from "svelte";
   import { spring } from "svelte/motion";
   import { MeshStandardMaterial, SphereGeometry, TextureLoader } from "three";
 
@@ -33,13 +34,28 @@
 
   /* Textures */
   const textureLoader = new TextureLoader();
-  // src\textures\earth3.jpg
-  const earthColorMap = textureLoader.load("src/textures/earth_base_color.jpg");
-  const earthSpecMap = textureLoader.load("src/textures/earth_spec.jpg");
-  const earthBumpMap = textureLoader.load("src/textures/earth_bump.jpg");
-  const cloudsColorMap = textureLoader.load(
-    "src/textures/cloud_base_color.jpg"
-  );
+  textureLoader.setCrossOrigin("Anonymous");
+
+  let earthColorMap = textureLoader.load("/earth_base_color_min.jpg");
+  let earthSpecMap = textureLoader.load("/earth_spec.jpg");
+  // let earthBumpMap = undefined;
+  let cloudsColorMap = textureLoader.load("/cloud_base_color_min.jpg");
+
+  let earthMesh, cloudMesh;
+
+  async function loadTexture() {
+    // const CLOUD_BASE_COLOR =
+    //   "https://user-images.githubusercontent.com/116789799/221181309-1a17b244-04f0-4be0-9b99-373d1a640501.jpg";
+    // const EARTH_BASE_COLOR =
+    //   "https://user-images.githubusercontent.com/116789799/221181384-21338d86-153b-46c0-ad78-d9cb7617121e.jpg";
+    // const EARTH_BUMP_MAP =
+    //   "https://user-images.githubusercontent.com/116789799/221181399-e8e56901-554b-45be-a7ef-2ec9c0809d21.jpg";
+    earthColorMap = await textureLoader.loadAsync("/earth_base_color.jpg");
+    cloudsColorMap = await textureLoader.loadAsync("/cloud_base_color.jpg");
+    // earthBumpMap = await textureLoader.loadAsync("/earth_bump.jpg")
+    earthMesh.material.map.needsUpdate = true;
+    cloudMesh.material.map.needsUpdate = true;
+  }
 
   let perspectiveCamera;
   let directionalLight;
@@ -60,6 +76,10 @@
     requestAnimationFrame(dynamicLighting);
   }
   dynamicLighting(HAS_DYNAMIC_LIGHTING);
+
+  onMount(() => {
+    loadTexture();
+  });
 
   function zoomIn() {
     $OBJ_SCALE = 1.05;
@@ -95,6 +115,7 @@
 
   <Group scale={$OBJ_SCALE}>
     <Mesh
+      bind:mesh={earthMesh}
       position={{ y: 0.5 }}
       geometry={new SphereGeometry(
         EARTH_RADIUS,
@@ -107,15 +128,14 @@
         map: earthColorMap,
         aoMapIntensity: 0.25,
         roughnessMap: earthSpecMap,
-        bumpScale: 0.1,
       })}
     />
     <Mesh
       interactive
       on:pointerenter={zoomIn}
       on:pointerleave={zoomOut}
+      bind:mesh={cloudMesh}
       position={{ y: 0.5 }}
-      castShadow={true}
       geometry={new SphereGeometry(
         EARTH_RADIUS + MIN_CULLING_DIST,
         OBJECT_SEG_COUNT,

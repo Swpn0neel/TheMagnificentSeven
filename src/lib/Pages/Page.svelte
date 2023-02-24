@@ -35,23 +35,27 @@
     });
   }
 
-  onMount(animateImages);
+  console.log(pageIndex);
+
+  onMount(() => {
+    animateImages();
+  });
 </script>
 
 <article bind:this={container}>
   <section>
     <div bind:this={images[0]}>
-      <PageContent data={PLACES_DATA[pageIndex].pageOne} />
+      <PageContent data={PLACES_DATA[pageIndex]?.pageOne} />
     </div>
   </section>
   <section>
     <div bind:this={images[1]}>
-      <PageContent data={PLACES_DATA[pageIndex].pageTwo} />
+      <PageContent data={PLACES_DATA[pageIndex]?.pageTwo} />
     </div>
   </section>
   <section>
     <div bind:this={images[2]}>
-      <PageContent data={PLACES_DATA[pageIndex].pageThree} />
+      <PageContent data={PLACES_DATA[pageIndex]?.pageThree} />
     </div>
   </section>
 </article>
