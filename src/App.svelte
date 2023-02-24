@@ -1,6 +1,7 @@
 <script>
   import gsap from "gsap";
   import EarthCanvas from "./lib/ThreeScenes/EarthCanvas.svelte";
+  import FrontPage from "./FrontPage.svelte";
 
   let header, header_heading, header_para, header_btn;
   let main;
@@ -29,45 +30,56 @@
 </script>
 
 <main bind:this={main}>
+  <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&display=swap" rel="stylesheet">
   <header bind:this={header} class="con-header">
     <h1 bind:this={header_heading}>The Magnificient Seven</h1>
     <p bind:this={header_para}>
-      A Deep-Dive into the World's magnificent structures built by the humans.
+      A Deep-Dive into the World's magnificent structures, that are the engineering marvels ever created by us. These iconic structures have been recognized for their awe-inspiring design, scale, and technological sophistication and serves as a testament to human ingenuity and the unrelenting pursuit of progress.
     </p>
     <button bind:this={header_btn} on:click={toggleFullscreen}><span>Explore</span></button>
   </header>
   <div class="con-canvas">
-    <EarthCanvas/>
+    <EarthCanvas></EarthCanvas>
   </div>
 </main>
 
-<!-- 
-<FrontPage/> -->
+<!-- <FrontPage>
+
+</FrontPage> -->
+
 
 <style>
   * {
-    --bgColor: #03041c;
+    /* --bgColor: #03041c; */
+    /* background-repeat: no-repeat;
+    background-image: url(https://wallpapercave.com/wp/wp2088454.jpg); */
   }
   main {
+    background-repeat: no-repeat;
+    background-image: url(https://wallpapercave.com/wp/wp2088454.jpg);
+    /* background-image: url(./images/diyamam.jpg); */
     overflow: hidden;
     display: flex;
   }
   .con-canvas {
     height: 100vh;
     width: 100%;
-    background-color: var(--bgColor);
+    /* background-color: var(--bgColor); */
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   header {
-    background-color: var(--bgColor);
+    /* background-color: var(--bgColor); */
     padding: 0 4rem;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    width:50%;
   }
 
   header > * {
@@ -76,14 +88,16 @@
   }
 
   header > h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 66px;
   }
 
   header > p {
-    font-family: sans-serif;
+    font-family: 'PT Sans', sans-serif;
     line-height: 1.75rem;
-    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    display: flex;
+    justify-content:flex-end;
   }
 
   header > button {
@@ -100,13 +114,16 @@
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
-  font-family: Phantomsans, sans-serif;
+  font-family: 'Gruppo', cursive;
   font-weight: bold;
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 25px;
   justify-content: center;
-  line-height: 1em;
+  /* line-height: 1em; */
+  line-height: 0.77em;
   max-width: 100%;
   min-width: 140px;
+  width: 35%;
   padding: 3px;
   text-decoration: none;
   user-select: none;
@@ -139,5 +156,5 @@ header > button:hover span {
     font-size: 24px;
     min-width: 196px;
   }
-  }
+}
 </style>

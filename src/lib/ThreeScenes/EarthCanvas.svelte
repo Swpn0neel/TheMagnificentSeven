@@ -14,7 +14,7 @@
   /* Object Properties */
   const SCALE = 1;
   const OBJ_SCALE = spring(SCALE);
-  const EARTH_RADIUS = 3;
+  const EARTH_RADIUS = 2.8;
   const MIN_CULLING_DIST = 0.05;
   const EARTH_ROTATION_SPEED = -1;
   const OBJECT_SEG_COUNT = 32;
