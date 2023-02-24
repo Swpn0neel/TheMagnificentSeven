@@ -2,6 +2,10 @@
   import gsap from "gsap";
   import ScrollTrigger from "gsap/ScrollTrigger";
   import { onMount } from "svelte";
+  import { PLACES_DATA } from "../../data/info";
+  import PageContent from "./PageContent.svelte";
+
+  export let pageIndex;
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -36,13 +40,19 @@
 
 <article bind:this={container}>
   <section>
-    <div bind:this={images[0]} class="image one" />
+    <div bind:this={images[0]}>
+      <PageContent data={PLACES_DATA[pageIndex].pageOne} />
+    </div>
   </section>
   <section>
-    <div bind:this={images[1]} class="image two" />
+    <div bind:this={images[1]}>
+      <PageContent data={PLACES_DATA[pageIndex].pageTwo} />
+    </div>
   </section>
   <section>
-    <div bind:this={images[2]} class="image three" />
+    <div bind:this={images[2]}>
+      <PageContent data={PLACES_DATA[pageIndex].pageThree} />
+    </div>
   </section>
 </article>
 <div class="spacer" />
