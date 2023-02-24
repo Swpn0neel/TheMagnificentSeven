@@ -23,7 +23,7 @@
   /* Viewport Settings */
   const CAMERA_POSITION = { x: 10, y: 10, z: 10 };
   const FIELD_OF_VIEW = 24;
-  const IS_ZOOMING = true;
+  const IS_ZOOMING = false;
   const IS_PANNING = false;
 
   /* Lighting Settings */
@@ -35,11 +35,10 @@
   /* Textures */
   const textureLoader = new TextureLoader();
   textureLoader.setCrossOrigin("Anonymous");
-  // src\textures\earth3.jpg
-  let earthColorMap = textureLoader.load("/earth_base_color_min.jpg");
 
-  const earthSpecMap = textureLoader.load("/earth_spec.jpg");
-  const earthBumpMap = textureLoader.load("/earth_bump.jpg");
+  let earthColorMap = textureLoader.load("/earth_base_color_min.jpg");
+  let earthSpecMap = textureLoader.load("/earth_spec.jpg");
+  // let earthBumpMap = undefined;
   let cloudsColorMap = textureLoader.load("/cloud_base_color_min.jpg");
 
   let earthMesh, cloudMesh;
@@ -53,8 +52,9 @@
     //   "https://user-images.githubusercontent.com/116789799/221181399-e8e56901-554b-45be-a7ef-2ec9c0809d21.jpg";
     earthColorMap = await textureLoader.loadAsync("/earth_base_color.jpg");
     cloudsColorMap = await textureLoader.loadAsync("/cloud_base_color.jpg");
-    earthMesh.material.map.needsUpdate = true
-    cloudMesh.material.map.needsUpdate = true
+    // earthBumpMap = await textureLoader.loadAsync("/earth_bump.jpg")
+    earthMesh.material.map.needsUpdate = true;
+    cloudMesh.material.map.needsUpdate = true;
   }
 
   let perspectiveCamera;
@@ -128,7 +128,6 @@
         map: earthColorMap,
         aoMapIntensity: 0.25,
         roughnessMap: earthSpecMap,
-        bumpScale: 0.1,
       })}
     />
     <Mesh
@@ -137,7 +136,6 @@
       on:pointerleave={zoomOut}
       bind:mesh={cloudMesh}
       position={{ y: 0.5 }}
-      castShadow={true}
       geometry={new SphereGeometry(
         EARTH_RADIUS + MIN_CULLING_DIST,
         OBJECT_SEG_COUNT,
