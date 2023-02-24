@@ -1,4 +1,4 @@
-const PLACES_DATA = [
+export const PLACES_DATA = [
   {
     pageOne: {
       title: "The Great Wall of China",
