@@ -1,47 +1,58 @@
-# Svelte + Vite
+# The Magnificient Seven
 
-This template should help get you started developing with Svelte in Vite.
+## Overview
 
-## Recommended IDE Setup
+With our project "The Magnificent Seven", you will be able to dive deep into the World's magnificent Seven Wonders, that are the Engineering Marvels recognized for their awe-inspiring design, scale, and technological sophistication - a testament to human ingenuity and the unrelenting pursuit of progress.
+</br>
+</br>
+These techanical marvels include the "Seven Wonders of the new World", namely:
+- The Great Wall of China, China
+- Chichén Itzá, Mexico
+- Petra, Jordan
+- Machu Pichu, Peru
+- Christ the Redeemer, Brazil
+- Colosseum, Italy
+- Taj Mahal, India
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+<hr>
 
-## Need an official Svelte framework?
+## Installation
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+First clone this repository. You can also fork this repository and then clone the forked one.
 
-## Technical considerations
-
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
 ```
+git clone https://github.com/samyabrata-maji/magnificent-seven
+```
+
+Make sure you have Node Package Manager (npm) installed. Will work with most versions, but the latest (LTS) is recommended.
+
+Now you need to install all the dependencies.
+```
+cd ./experiments-website
+yarn install
+```
+
+You are done with the installation.
+
+To run the website, use the following command
+```
+yarn dev
+```
+
+- The website will be live at https://localhost:5173/
+- The website is deployed at https://
+
+<hr>
+
+## Team
+
+<table>
+  <tr>
+
+<td align="center"><a href="https://github.com/Swpn0neel"><img src="https://avatars.githubusercontent.com/u/121167506?v=4" width="100px;" alt=""/><br /><sub><b>Swapnoneel Saha</b></sub></a></td>
+<td align="center"><a href="https://github.com/samyabrata-maji"><img src="https://avatars.githubusercontent.com/u/116789799?v=4" width="100px;" alt=""/><br /><sub><b>Samyabrata Maji</b></sub></a></td>
+<td align="center"><a href="https://github.com/Arindam200"><img src="https://avatars.githubusercontent.com/u/109217591?v=4" width="100px;" alt=""/><br /><sub><b>Arindam Majumder</b></sub></a></td>
+   
+ </tr>
+</table>
+
